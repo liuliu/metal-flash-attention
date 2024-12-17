@@ -17,6 +17,9 @@ let package = Package(
     .library(
       name: "FlashAttention",
       targets: ["FlashAttention"]),
+    .executable(
+      name: "Benchmark",
+      targets: ["Benchmark"]),
   ],
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -26,5 +29,9 @@ let package = Package(
     .testTarget(
       name: "FlashAttentionTests",
       dependencies: ["FlashAttention"]),
+    .executableTarget(
+      name: "Benchmark",
+      dependencies: ["FlashAttention"],
+      path: "Benchmark"),
   ]
 )

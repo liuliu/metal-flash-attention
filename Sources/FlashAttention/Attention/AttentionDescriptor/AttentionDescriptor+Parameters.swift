@@ -16,7 +16,7 @@ extension AttentionDescriptor {
     if lowPrecisionInputs && lowPrecisionIntermediates {
       switch type {
       case .forward: 
-        createParameters = Self.forwardMixed(device:)
+        createParameters = Self.defaultParameters(device:)
       case .backwardQuery:
         createParameters = Self.backwardQueryMixed(device:)
       case .backwardKeyValue:
@@ -25,7 +25,7 @@ extension AttentionDescriptor {
     } else {
       switch type {
       case .forward: 
-        createParameters = Self.forward(device:)
+        createParameters = Self.defaultParameters(device:)
       case .backwardQuery:
         createParameters = Self.backwardQuery(device:)
       case .backwardKeyValue:
@@ -77,7 +77,7 @@ extension AttentionDescriptor {
   static func defaultParameters(device: MTLDevice) -> String {
     if device.supportsFamily(.apple9) {
       return """
-      | 0   | 16 | 128 | 16 |      |
+      | 0   | 16 | 128 | 8 |       |
       
       """
     } else {
