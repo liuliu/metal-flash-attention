@@ -77,7 +77,7 @@ extension AttentionDescriptor {
   static func defaultParameters(device: MTLDevice) -> String {
     if device.supportsFamily(.apple9) {
       return """
-      | 0   | 16 | 128 | 8 |       |
+      | 0   | 16 | 96 | 8 |       |
       
       """
     } else {
